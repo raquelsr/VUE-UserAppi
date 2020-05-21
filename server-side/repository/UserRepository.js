@@ -62,6 +62,16 @@ class UserRepository {
     this.users.push(user);
     return user;
   }
+
+  async updateById(id, user) {
+    console.log('UserRepository ---- updateById');
+    const userIndex = this.users.findIndex(user => user.id === id);
+    if (!userIndex) {
+      return;
+    }
+    this.users[userIndex] = user;
+    return this.users[userIndex];
+  }
 }
 
 module.exports = new UserRepository();
