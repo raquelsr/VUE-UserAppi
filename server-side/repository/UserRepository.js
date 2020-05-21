@@ -52,6 +52,11 @@ class UserRepository {
     return this.users;
   }
 
+  async getById(id) {
+    console.log('UserRepository ---- getById');
+    return this.users.find(user => user.id === id);
+  }
+
   async create(user) {
     console.log('UserRepository ---- create');
     this.users.push(user);

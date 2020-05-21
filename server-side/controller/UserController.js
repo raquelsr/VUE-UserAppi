@@ -25,6 +25,14 @@ exports.getAll = (req, res) => {
     .then(data => res.status(200).json(data));
 }
 
+exports.getById = (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  UserRepository.getById(id)
+    .then(data => {
+      (data) ? res.status(200).json(data) : res.status(401).json({error: "User not found"});
+    })
+}
+
 exports.create = (req, res) => {
   console.log('UserController ---- create');
 
@@ -36,7 +44,3 @@ exports.create = (req, res) => {
   UserRepository.create(req.body)
     .then(data => res.status(201).send(data));
 }
-
-
-
-

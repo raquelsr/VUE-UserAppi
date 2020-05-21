@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/', UserController.getAll);
 
-// router.get('/a', UserController.createUser);
+router.get('/:id', UserController.getById);
 
 router.post('/', UserController.validate('post'), UserController.create);
 
