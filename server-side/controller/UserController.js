@@ -1,31 +1,33 @@
 const UserRepository = require('../repository/UserRepository');
+const { validationResult, body } = require('express-validator/check');
 
-exports.createUser = (req, res) => {
-  const oo = {name : 'Raquel'}
-  UserRepository.add(oo);
-  return res.status(200).json({ message: 'Repository!' });
-
-  /* 
-    UserRepository.create(user)
-    .then((newUser) => {
-      res.json(newUser);
-    }).catch((errors) => {
-      res.status(500).json({
-        errors,
-      });
-    }); */
+exports.validate = (method) => {
+  switch(method) {
+    case 'create': {
+      return [
+        body('name', 'Name doesnt exist').exists(),
+        body('email', 'invalid email').exists().isEmail()
+      ]
+    }
+  }
 }
 
 exports.getAll = (req, res) => {
   console.log('UserController ---- getAll');
-  return res.status(200).json(UserRepository.getAll());
+  UserRepository.getAll()
+    .then(data => res.status(200).json(data));
 }
 
 exports.create = (req, res) => {
-  console.log('UserControler ---- create');
-  console.log(req)
-  UserRepository.create(req.body);
-  return res.status(200).json({ message: 'created!' });
+  console.log('UserController ---- create');
+
+  const validation = validationResult(req);
+  if (!validation.isEmpty()) {
+    return res.status(405).json({ errors: validation.array() });
+  } 
+
+  UserRepository.create(req.body)
+    .then(data => res.status(201).send(data));
 }
 
 

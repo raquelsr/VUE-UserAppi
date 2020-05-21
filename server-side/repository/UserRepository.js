@@ -47,15 +47,15 @@ class UserRepository {
     ];
   }
 
-  getAll() {
+  async getAll() {
     console.log('UserRepository ---- getAll');
     return this.users;
   }
 
   async create(user) {
-    console.log('UserRepository ---- Create');
-    console.log(user);
+    console.log('UserRepository ---- create');
     this.users.push(user);
+    return user;
   }
 }
 
