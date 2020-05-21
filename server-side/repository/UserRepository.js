@@ -66,11 +66,20 @@ class UserRepository {
   async updateById(id, user) {
     console.log('UserRepository ---- updateById');
     const userIndex = this.users.findIndex(user => user.id === id);
-    if (!userIndex) {
+    if (userIndex === -1) {
       return;
     }
     this.users[userIndex] = user;
     return this.users[userIndex];
+  }
+
+  async deleteById(id) {
+    console.log('UserRepository ---- deleteById');
+    const userIndex = this.users.findIndex(user => user.id === id);
+    if (userIndex !== -1) {
+      this.users.splice(userIndex, 1);
+    }
+    return userIndex;
   }
 }
 

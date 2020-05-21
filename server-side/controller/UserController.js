@@ -57,3 +57,14 @@ exports.updateById = (req, res) => {
       (data) ? res.status(200).send(data) : res.status(404).json({error: "User not found"});
     })
 }
+
+exports.deleteById = (req, res) => {
+  console.log('UserController ---- delete');
+  const id = parseInt(req.params.id, 10);
+  
+  UserRepository.deleteById(id)
+    .then(data => {
+      console.log('finish' + data);
+      (data !== -1) ? res.status(200).json({success: "true"}) : res.status(404).json({error: "User not found"});
+    });
+}
