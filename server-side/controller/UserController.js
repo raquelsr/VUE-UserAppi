@@ -3,13 +3,11 @@ const { validationResult } = require('express-validator/check');
 const errorMessages = require('../utils/errorMessages');
 
 exports.getAll = (req, res) => {
-  console.log('UserController ---- getAll');
   UserRepository.getAll()
     .then(data => res.status(200).json(data));
 }
 
 exports.getById = (req, res) => {
-  console.log('UserController ---- getById');
   if (!req.params.id) {
     return res.status(400).json(errorMessages.badRequest());
   }
@@ -21,8 +19,6 @@ exports.getById = (req, res) => {
 }
 
 exports.create = (req, res) => {
-  console.log('UserController ---- create');
-
   const validation = validationResult(req);
   if (!validation.isEmpty()) {
     return res.status(405).json({ errors: validation.array() });
@@ -33,7 +29,6 @@ exports.create = (req, res) => {
 }
 
 exports.updateById = (req, res) => {
-  console.log('UserController ---- update');
   const id = parseInt(req.params.id, 10);
   
   const validation = validationResult(req);
@@ -48,7 +43,6 @@ exports.updateById = (req, res) => {
 }
 
 exports.deleteById = (req, res) => {
-  console.log('UserController ---- delete');
   if (!req.params.id) {
     return res.status(400).json(errorMessages.badRequest());
   }

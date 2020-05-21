@@ -48,23 +48,19 @@ class UserRepository {
   }
 
   async getAll() {
-    console.log('UserRepository ---- getAll');
     return this.users;
   }
 
   async getById(id) {
-    console.log('UserRepository ---- getById');
     return this.users.find(user => user.id === id);
   }
 
   async create(user) {
-    console.log('UserRepository ---- create');
     this.users.push(user);
     return user;
   }
 
   async updateById(id, user) {
-    console.log('UserRepository ---- updateById');
     const userIndex = this.users.findIndex(user => user.id === id);
     if (userIndex === -1) {
       return;
@@ -74,7 +70,6 @@ class UserRepository {
   }
 
   async deleteById(id) {
-    console.log('UserRepository ---- deleteById');
     const userIndex = this.users.findIndex(user => user.id === id);
     if (userIndex !== -1) {
       this.users.splice(userIndex, 1);
