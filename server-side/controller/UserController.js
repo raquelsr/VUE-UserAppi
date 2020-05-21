@@ -3,10 +3,17 @@ const { validationResult, body } = require('express-validator/check');
 
 exports.validate = (method) => {
   switch(method) {
-    case 'create': {
+    case 'post': {
       return [
-        body('name', 'Name doesnt exist').exists(),
-        body('email', 'invalid email').exists().isEmail()
+        body('firstname', 'firstname doesnt exist').exists(),
+        body('lastname', 'lastname doesnt exist').exists(),
+        body('email', 'email doesnt exist').exists().isEmail(),
+        body('birthDate', 'birthDate doesnt exist').exists(),
+        body('address', 'address doesnt exist').exists(),
+        body('address.street', 'street doesnt exist').exists(),
+        body('address.city', 'city doesnt exist').exists(),
+        body('address.country', 'country doesnt exist').exists(),
+        body('address.postalcode', 'postalcode doesnt exist').exists(),
       ]
     }
   }
