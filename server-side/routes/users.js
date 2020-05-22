@@ -4,10 +4,6 @@ const { validateUser } = require('../utils/validators');
 
 const router = express.Router();
 
-router.all('/', function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
 
 router.get('/', UserController.getAll);
 
