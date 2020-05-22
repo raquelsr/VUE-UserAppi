@@ -5,6 +5,11 @@ const { validateUser } = require('../utils/validators');
 const router = express.Router();
 
 
+router.use('/', function(req, res, next) {
+  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
+  next();
+});
+
 router.get('/', UserController.getAll);
 
 router.get('/:id', UserController.getById);
@@ -14,5 +19,7 @@ router.post('/', validateUser(), UserController.create);
 router.put('/:id', validateUser(), UserController.updateById);
 
 router.delete('/:id', UserController.deleteById);
+
+router.options('/*', UserController.options);
 
 module.exports = router;

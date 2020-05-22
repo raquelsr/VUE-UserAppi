@@ -54,3 +54,7 @@ exports.deleteById = (req, res) => {
     });
 }
 
+exports.options = (req, res) => {
+  return res.status(200).sendStatus(200);
+}
+
