@@ -6,7 +6,7 @@
     <ul>
       <li v-for="user of users" :key="user.id"> {{user.firstname}}
       <v-btn
-        @click="getUserById(user.id)"
+        @click="showUserDetail(user)"
       >
         Ver
       </v-btn>
@@ -17,6 +17,7 @@
 
 <script>
 import UserService from '../services/UserService';
+import router from '../router/index';
 
 export default {
   name: 'UserList',
@@ -25,18 +26,16 @@ export default {
     users: [],
   }),
   created() {
-    this.getUsers();
+    this.showUsers();
   },
   methods: {
-    getUsers() {
+    showUsers() {
       UserService.getAll()
         .then((response) => { this.users = response.data; })
         .catch((error) => console.log(error));
     },
-    getUserById(id) {
-      UserService.getById(id)
-        .then((response) => console.log(response.data))
-        .catch((error) => console.log(error));
+    showUserDetail(user) {
+      router.push({ name: 'UserDetail', params: { userId: user.id }, query: { user } });
     },
   },
 };
