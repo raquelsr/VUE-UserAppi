@@ -12,6 +12,10 @@ class UserService {
   getById(id) {
     return http.get(`${this.ENDPOINT}/${id}`);
   }
+
+  delete(id) {
+    return http.delete(`${this.ENDPOINT}/${id}`);
+  }
 }
 
 export default new UserService();
