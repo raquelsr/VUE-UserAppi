@@ -2,8 +2,14 @@ $color-blue: rgb(56, 139, 223 );
 
 $screen-md-min: 800px;
 
-@mixin breakpoint {
+@mixin breakpoint-large {
   @media (min-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+
+@mixin breakpoint-small {
+  @media (max-width: #{$screen-md-min}) {
     @content;
   }
 }

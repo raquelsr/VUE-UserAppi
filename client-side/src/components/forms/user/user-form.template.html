@@ -1,5 +1,6 @@
 <form>
   <h1 v-if="user">Edit {{user.firstName}}</h1>
+  <h1 v-else>Create new user</h1>
   <v-text-field
     v-model="firstName"
     :error-messages="firstNameErrors"
@@ -38,6 +39,6 @@
 
   <address-form ref="addressForm" :user="user" />
 
-  <v-btn class="mr-4" @click="submit">Save</v-btn>
-  <v-btn @click="clear">Clear</v-btn>
+  <v-btn class="mr-4" @click="save">Save</v-btn>
+  <v-btn @click="cancel">Cancel</v-btn>
 </form>

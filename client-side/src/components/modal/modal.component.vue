@@ -20,14 +20,14 @@ export default {
   },
 
   methods: {
-    openModal() {
+    open() {
       this.isOpen = true;
     },
-    closeModal() {
+    close() {
       this.isOpen = false;
     },
     updateUserList() {
-      this.closeModal();
+      this.close();
       this.$emit('update-users');
     },
   },

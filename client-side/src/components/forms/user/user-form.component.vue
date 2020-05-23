@@ -1,4 +1,5 @@
 <template src="./user-form.template.html"></template>
+<style scoped lang="scss" src="./user-form.style.scss"></style>
 
 <script>
 import { validationMixin } from 'vuelidate';
@@ -64,7 +65,7 @@ export default {
   },
 
   methods: {
-    submit() {
+    save() {
       this.$v.$touch();
       const address = this.$refs.addressForm.submit();
       const user = new User(this.firstName, this.lastName, this.email, this.birthDate, address);
@@ -75,13 +76,8 @@ export default {
         UserService.create(user).then(() => this.$emit('modal-user-success'));
       }
     },
-    clear() {
-      this.$v.$reset();
-      this.firstName = '';
-      this.lastName = '';
-      this.email = '';
-      this.birthDate = '';
-      this.$refs.addressForm.clear();
+    cancel() {
+      this.$emit('close-modal');
     },
   },
 };

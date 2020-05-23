@@ -1,20 +1,20 @@
 <div>
   <transition name="modal">
     <div v-if="isOpen">
-      <div class="overlay" @click.self="closeModal">
+      <div class="overlay" @click.self="close">
         <div class="modal">
-          <UserForm @modal-user-success="updateUserList" :user="user"/>
+          <UserForm @modal-user-success="updateUserList" @close-modal="close" :user="user"/>
         </div>
       </div>
     </div>
   </transition>
   <div v-if="user">
-    <v-btn @click="openModal" color="warning" fab small dark
+    <v-btn class="button-edit" @click="open" color="warning" fab small dark
     >
       <v-icon>mdi-account-edit</v-icon>
     </v-btn>
   </div >
   <div v-else>
-    <v-btn @click="openModal">New User</v-btn>
+    <v-btn @click="open">New User</v-btn>
   </div>
 </div>

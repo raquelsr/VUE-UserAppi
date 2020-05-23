@@ -62,13 +62,6 @@ export default {
       address.id = 1;
       return address;
     },
-    clear() {
-      this.$v.$reset();
-      this.street = '';
-      this.city = '';
-      this.country = '';
-      this.postalCode = '';
-    },
   },
 };
 </script>

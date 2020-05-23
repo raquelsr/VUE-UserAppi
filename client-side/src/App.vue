@@ -25,3 +25,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+ .v-app-bar {
+   z-index: 1 !important;
+ }
+</style>

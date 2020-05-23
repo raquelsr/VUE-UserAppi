@@ -19,7 +19,11 @@
     margin: 4%;
   }
 
-  @include breakpoint {
+  .actions {
+    display: flex;
+  }
+
+  @include breakpoint-large {
     .user {
       margin: 8%;
     }

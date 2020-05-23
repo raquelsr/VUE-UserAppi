@@ -1,7 +1,7 @@
 <div class="user-list">
   <h1>Users</h1>
 
-  <modal @update-users="showUsers"/>
+  <modal class="modal-create" @update-users="showUsers" />
   
   <div class="user">
     <v-expansion-panels focusable popout>
@@ -9,14 +9,16 @@
         v-for="user of users"
         :key="user.id"
       >
-      <v-expansion-panel-header>{{user.firstName}} {{user.lastName}}
+      <v-expansion-panel-header disable-icon-rotate>{{user.firstName}} {{user.lastName}}
         <template v-slot:actions>
-          <modal @click.native.stop="editUser(user)" @update-users="showUsers" :user="user" />
+          <div class="actions">
+            <modal class="modal-edit" @click.native.stop @update-users="showUsers" :user="user" />
           
-          <v-btn color="warning" fab small dark
-            @click.native.stop="deleteUser(user.id)">
-            <v-icon>mdi-delete</v-icon>
-          </v-btn>
+            <v-btn color="warning" fab small dark
+              @click.native.stop="deleteUser(user.id)">
+              <v-icon>mdi-delete</v-icon>
+            </v-btn>
+          </div>
         </template>
       </v-expansion-panel-header>
   
