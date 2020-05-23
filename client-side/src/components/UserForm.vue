@@ -100,7 +100,7 @@ export default {
       const address = this.$refs.addressForm.createAddress();
       const user = new User(this.firstName, this.lastName, this.email, this.birthDate, address);
       user.id = 77;
-      UserService.create(user).then(this.$emit('modal-user-success'));
+      UserService.create(user).then(() => this.$emit('modal-user-success'));
     },
     clear() {
       this.$v.$reset();
