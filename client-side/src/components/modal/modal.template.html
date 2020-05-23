@@ -1,0 +1,15 @@
+<div>
+  <transition name="modal">
+    <div v-if="isOpen">
+      <div class="overlay" @click.self="closeModal">
+        <div class="modal">
+          <UserForm @modal-user-success="updateUserList" :user="user"/>
+        </div>
+      </div>
+    </div>
+  </transition>
+  <button @click="openModal">
+    <span v-if="user">Edit</span>
+    <span v-else>Create</span>
+  </button>
+</div>

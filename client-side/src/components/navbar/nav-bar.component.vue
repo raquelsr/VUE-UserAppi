@@ -1,8 +1,4 @@
-<template>
-  <div>
-      <v-toolbar-title>Home</v-toolbar-title>
-  </div>
-</template>
+<template src="./nav-bar.template.html"></template>
 
 <script>
 

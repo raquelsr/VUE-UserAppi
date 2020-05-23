@@ -1,0 +1,43 @@
+<form>
+  <h1 v-if="user">Edit {{user.firstName}}</h1>
+  <v-text-field
+    v-model="firstName"
+    :error-messages="firstNameErrors"
+    label="First name"
+    required
+    @input="$v.firstName.$touch()"
+    @blur="$v.firstName.$touch()"
+  ></v-text-field>
+
+  <v-text-field
+    v-model="lastName"
+    :error-messages="lastNameErrors"
+    label="Last name"
+    required
+    @input="$v.lastName.$touch()"
+    @blur="$v.lastName.$touch()"
+  ></v-text-field>
+
+  <v-text-field
+    v-model="email"
+    :error-messages="emailErrors"
+    label="Email"
+    required
+    @input="$v.email.$touch()"
+    @blur="$v.email.$touch()"
+  ></v-text-field>
+
+  <v-text-field
+    v-model="birthDate"
+    :error-messages="birthDateErrors"
+    label="Birth date"
+    required
+    @input="$v.birthDate.$touch()"
+    @blur="$v.birthDate.$touch()"
+  ></v-text-field>
+
+  <address-form ref="addressForm" :user="user" />
+
+  <v-btn class="mr-4" @click="submit">Save</v-btn>
+  <v-btn @click="clear">Clear</v-btn>
+</form>

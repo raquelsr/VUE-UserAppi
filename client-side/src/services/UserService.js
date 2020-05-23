@@ -18,6 +18,7 @@ class UserService {
   }
 
   edit(user) {
+    console.log(user);
     return http.put(`${this.ENDPOINT}/${user.id}`, user);
   }
 

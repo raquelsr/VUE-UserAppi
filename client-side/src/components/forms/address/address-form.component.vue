@@ -1,51 +1,12 @@
-<template>
-  <form>
-    <v-text-field
-      v-model="street"
-      :error-messages="streetErrors"
-      label="Street"
-      required
-      @input="$v.street.$touch()"
-      @blur="$v.street.$touch()"
-    ></v-text-field>
-
-    <v-text-field
-    v-model="city"
-    :error-messages="cityErrors"
-    label="City"
-    required
-    @input="$v.city.$touch()"
-    @blur="$v.city.$touch()"
-    ></v-text-field>
-
-    <v-text-field
-    v-model="country"
-    :error-messages="countryErrors"
-    label="Country"
-    required
-    @input="$v.country.$touch()"
-    @blur="$v.country.$touch()"
-    ></v-text-field>
-
-    <v-text-field
-    v-model="postalCode"
-    :error-messages="postalCodeErrors"
-    label="Postal Code"
-    required
-    @input="$v.postalCode.$touch()"
-    @blur="$v.postalCode.$touch()"
-    ></v-text-field>
-  </form>
-</template>
+<template src="./address-form.template.html"></template>
 
 <script>
 import { validationMixin } from 'vuelidate';
 import { required } from 'vuelidate/lib/validators';
-import Address from '../models/Address';
-import ErrorValidatorHandler from '../utils/ErrorValidatorHandler';
+import ErrorValidatorHandler from '../../../utils/ErrorValidatorHandler';
+import Address from '../../../models/Address';
 
 export default {
-
   props: {
     user: Object,
   },
