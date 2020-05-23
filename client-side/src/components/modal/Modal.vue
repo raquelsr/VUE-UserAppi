@@ -4,13 +4,14 @@
       <div v-if="isOpen">
         <div class="overlay" @click.self="closeModal">
           <div class="modal">
-            <UserForm @modal-user-success="updateUserList"/>
+            <UserForm @modal-user-success="updateUserList" :user="user"/>
           </div>
         </div>
       </div>
     </transition>
     <button @click="openModal">
-      New user
+      <span v-if="user">Edit</span>
+      <span v-else>Create</span>
     </button>
   </div>
 </template>
@@ -19,14 +20,20 @@
 import UserForm from '../UserForm.vue';
 
 export default {
+  props: {
+    user: Object,
+  },
+
   components: {
     UserForm,
   },
+
   data() {
     return {
       isOpen: false,
     };
   },
+
   methods: {
     openModal() {
       this.isOpen = true;
@@ -35,7 +42,7 @@ export default {
       this.isOpen = false;
     },
     updateUserList() {
-      console.log('updateUserList');
+      this.closeModal();
       this.$emit('update-users');
     },
   },

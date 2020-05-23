@@ -45,6 +45,11 @@ import Address from '../models/Address';
 import ErrorValidatorHandler from '../utils/ErrorValidatorHandler';
 
 export default {
+
+  props: {
+    user: Object,
+  },
+
   mixins: [validationMixin],
 
   validations: {
@@ -60,6 +65,15 @@ export default {
     country: '',
     postalCode: '',
   }),
+
+  mounted() {
+    if (this.user) {
+      this.street = this.user.address.street;
+      this.city = this.user.address.city;
+      this.country = this.user.address.country;
+      this.postalCode = this.user.address.postalCode;
+    }
+  },
 
   computed: {
     streetErrors() {

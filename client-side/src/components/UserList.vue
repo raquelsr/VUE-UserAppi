@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>USER LIST</h1>
-    <Modal @update-users="showUsers" />
+    <Modal @update-users="showUsers"/>
     <ul>
       <li v-for="user of users" :key="user.id"> {{user.firstName}}
       <v-btn
@@ -13,6 +13,11 @@
         @click="deleteUser(user.id)"
       >
         Delete
+      </v-btn>
+
+      <v-btn
+      >
+      <Modal @update-users="showUsers" :user="user" />
       </v-btn>
       </li>
     </ul>

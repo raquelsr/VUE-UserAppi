@@ -1,5 +1,6 @@
 <template>
   <form>
+    <h1 v-if="user">Edit {{user.firstName}}</h1>
     <v-text-field
       v-model="firstName"
       :error-messages="firstNameErrors"
@@ -36,7 +37,7 @@
       @blur="$v.birthDate.$touch()"
     ></v-text-field>
 
-    <address-form ref="addressForm" />
+    <address-form ref="addressForm" :user="user" />
 
     <v-btn class="mr-4" @click="submit">Save</v-btn>
     <v-btn @click="clear">Clear</v-btn>
@@ -52,6 +53,11 @@ import UserService from '../services/UserService';
 import ErrorValidatorHandler from '../utils/ErrorValidatorHandler';
 
 export default {
+
+  props: {
+    user: Object,
+  },
+
   mixins: [validationMixin],
 
   validations: {
@@ -65,6 +71,15 @@ export default {
     AddressForm,
   },
 
+  mounted() {
+    if (this.user) {
+      this.firstName = this.user.firstName;
+      this.lastName = this.user.lastName;
+      this.email = this.user.email;
+      this.birthDate = this.user.birthDate;
+    }
+  },
+
   data: () => ({
     firstName: '',
     lastName: '',
@@ -74,6 +89,7 @@ export default {
 
   computed: {
     firstNameErrors() {
+      console.log(this.user);
       const errorHandler = new ErrorValidatorHandler();
       return errorHandler.checkRequiredField(this.$v.firstName, 'First name');
     },
@@ -98,8 +114,13 @@ export default {
       this.$v.$touch();
       const address = this.$refs.addressForm.submit();
       const user = new User(this.firstName, this.lastName, this.email, this.birthDate, address);
-      user.id = 77;
-      UserService.create(user).then(() => this.$emit('modal-user-success'));
+      if (this.user) {
+        user.id = this.user.id;
+        UserService.edit(user).then(() => this.$emit('modal-user-success'));
+      } else {
+        user.id = 77;
+        UserService.create(user).then(() => this.$emit('modal-user-success'));
+      }
     },
     clear() {
       this.$v.$reset();

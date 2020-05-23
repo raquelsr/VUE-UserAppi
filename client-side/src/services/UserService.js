@@ -17,6 +17,10 @@ class UserService {
     return http.post(this.ENDPOINT, user);
   }
 
+  edit(user) {
+    return http.put(`${this.ENDPOINT}/${user.id}`, user);
+  }
+
   delete(id) {
     return http.delete(`${this.ENDPOINT}/${id}`);
   }
