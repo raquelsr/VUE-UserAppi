@@ -4,7 +4,7 @@
       <div v-if="isOpen">
         <div class="overlay" @click.self="isOpen = false;">
           <div class="modal">
-            <UserForm />
+            <UserForm @modal-user-success="updateUserList"/>
           </div>
         </div>
       </div>
@@ -26,6 +26,12 @@ export default {
     return {
       isOpen: false,
     };
+  },
+  methods: {
+    updateUserList() {
+      console.log('updateUserList');
+      this.$emit('update-users');
+    },
   },
 };
 </script>

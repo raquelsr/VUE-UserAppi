@@ -13,6 +13,10 @@ class UserService {
     return http.get(`${this.ENDPOINT}/${id}`);
   }
 
+  create(user) {
+    return http.post(this.ENDPOINT, user);
+  }
+
   delete(id) {
     return http.delete(`${this.ENDPOINT}/${id}`);
   }

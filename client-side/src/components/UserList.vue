@@ -1,11 +1,8 @@
 <template>
   <div>
     <h1>USER LIST</h1>
-    <button id="show-modal" @click="showModal = true">Show Modal</button>
-  <!-- use the modal component, pass in the prop -->
-  <Modal />
-    <p>{{msg}}</p>
-
+    <button id="show-modal" @click="showModal = true">New user</button>
+    <Modal @update-users="showUsers" />
     <ul>
       <li v-for="user of users" :key="user.id"> {{user.firstname}}
       <v-btn
@@ -30,7 +27,6 @@ import Modal from './modal/Modal.vue';
 
 export default {
   name: 'UserList',
-  props: ['msg'],
   components: {
     Modal,
   },
@@ -57,7 +53,7 @@ export default {
     },
     deleteUser(id) {
       UserService.delete(id)
-        .then((response) => console.log(response))
+        .then(() => this.showUsers())
         .catch((error) => console.log(error));
     },
   },
