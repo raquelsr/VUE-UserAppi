@@ -1,6 +1,7 @@
 class UserRepository {
 
   constructor() {
+    this.counter = 4;
     this.users = [
       {
         "id": 1,
@@ -56,7 +57,10 @@ class UserRepository {
   }
 
   async create(user) {
+    user.id = this.counter;
+    user.address.id = this.counter;
     this.users.push(user);
+    this.counter++;
     return user;
   }
 

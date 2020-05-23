@@ -89,7 +89,6 @@ export default {
 
   computed: {
     firstNameErrors() {
-      console.log(this.user);
       const errorHandler = new ErrorValidatorHandler();
       return errorHandler.checkRequiredField(this.$v.firstName, 'First name');
     },
@@ -115,10 +114,8 @@ export default {
       const address = this.$refs.addressForm.submit();
       const user = new User(this.firstName, this.lastName, this.email, this.birthDate, address);
       if (this.user) {
-        user.id = this.user.id;
         UserService.edit(user).then(() => this.$emit('modal-user-success'));
       } else {
-        user.id = 77;
         UserService.create(user).then(() => this.$emit('modal-user-success'));
       }
     },
