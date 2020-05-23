@@ -5,7 +5,7 @@
 import { validationMixin } from 'vuelidate';
 import { required, email } from 'vuelidate/lib/validators';
 import AddressForm from '../address/address-form.component.vue';
-import User from '../../../models/User';
+import UserBuilder from '../../../models/builders/UserBuilder';
 import UserService from '../../../services/UserService';
 import ErrorValidatorHandler from '../../../utils/ErrorValidatorHandler';
 
@@ -65,10 +65,19 @@ export default {
   },
 
   methods: {
+    createUser() {
+      const address = this.$refs.addressForm.submit();
+      const user = new UserBuilder()
+        .setFirstName(this.firstName)
+        .setLastName(this.lastName)
+        .setEmail(this.email)
+        .setBirthDate(this.birthDate)
+        .setAddress(address);
+      return user;
+    },
     save() {
       this.$v.$touch();
-      const address = this.$refs.addressForm.submit();
-      const user = new User(this.firstName, this.lastName, this.email, this.birthDate, address);
+      const user = this.createUser();
       if (this.user) {
         user.id = this.user.id;
         UserService.edit(user).then(() => this.$emit('modal-user-success'));

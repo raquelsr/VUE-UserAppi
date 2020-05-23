@@ -4,7 +4,7 @@
 import { validationMixin } from 'vuelidate';
 import { required } from 'vuelidate/lib/validators';
 import ErrorValidatorHandler from '../../../utils/ErrorValidatorHandler';
-import Address from '../../../models/Address';
+import AddressBuilder from '../../../models/builders/AddressBuilder';
 
 export default {
   props: {
@@ -56,10 +56,17 @@ export default {
   },
 
   methods: {
+    createAddress() {
+      const address = new AddressBuilder()
+        .setStreet(this.street)
+        .setCity(this.city)
+        .setCountry(this.country)
+        .setPostalCode(this.postalCode);
+      return address;
+    },
     submit() {
       this.$v.$touch();
-      const address = new Address(this.street, this.city, this.country, this.postalCode);
-      address.id = 1;
+      const address = this.createAddress();
       return address;
     },
   },
