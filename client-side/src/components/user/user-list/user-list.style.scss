@@ -23,6 +23,10 @@
     display: flex;
   }
 
+  .button-view {
+    margin-right: 10px;;
+  }
+
   @include breakpoint-large {
     .user {
       margin: 8%;

@@ -1,4 +1,5 @@
 <template src="./user-detail.template.html"></template>
+<style scoped lang="scss" src="./user-detail.style.scss"></style>
 
 <script>
 

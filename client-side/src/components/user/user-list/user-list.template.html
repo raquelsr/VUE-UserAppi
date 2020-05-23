@@ -12,7 +12,13 @@
       <v-expansion-panel-header disable-icon-rotate>{{user.firstName}} {{user.lastName}}
         <template v-slot:actions>
           <div class="actions">
-            <modal class="modal-edit" @click.native.stop @update-users="showUsers" :user="user" />
+            <v-btn class="button-view" color="warning" 
+              fab small dark
+            >
+              <v-icon>mdi-eye</v-icon>
+            </v-btn>
+
+            <modal @click.native.stop @update-users="showUsers" :user="user" />
           
             <v-btn color="warning" fab small dark
               @click.native.stop="deleteUser(user.id)">
