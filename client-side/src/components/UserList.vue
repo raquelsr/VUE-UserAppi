@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1>USER LIST</h1>
-    <button id="show-modal" @click="showModal = true">New user</button>
     <Modal @update-users="showUsers" />
     <ul>
       <li v-for="user of users" :key="user.id"> {{user.firstname}}

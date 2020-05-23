@@ -2,15 +2,15 @@
   <div>
     <transition name="modal">
       <div v-if="isOpen">
-        <div class="overlay" @click.self="isOpen = false;">
+        <div class="overlay" @click.self="closeModal">
           <div class="modal">
             <UserForm @modal-user-success="updateUserList"/>
           </div>
         </div>
       </div>
     </transition>
-    <button @click="isOpen = !isOpen;">
-      {{ isOpen ? "Close" : "Open" }} modal
+    <button @click="openModal">
+      New user
     </button>
   </div>
 </template>
@@ -28,6 +28,12 @@ export default {
     };
   },
   methods: {
+    openModal() {
+      this.isOpen = true;
+    },
+    closeModal() {
+      this.isOpen = false;
+    },
     updateUserList() {
       console.log('updateUserList');
       this.$emit('update-users');
