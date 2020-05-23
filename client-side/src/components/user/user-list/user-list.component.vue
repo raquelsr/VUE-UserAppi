@@ -1,15 +1,17 @@
 <template src="./user-list.template.html"></template>
+<style scoped lang="scss" src="./user-list.style.scss"></style>
 
 <script>
 import UserService from '../../../services/UserService';
-import router from '../../../router/index';
 import Modal from '../../modal/modal.component.vue';
+import UserDetail from '../user-detail/user-detail.component.vue';
 
 export default {
   name: 'UserList',
 
   components: {
     Modal,
+    UserDetail,
   },
 
   data: () => ({
@@ -26,9 +28,7 @@ export default {
         .then((response) => { this.users = response.data; })
         .catch((error) => console.log(error));
     },
-    showUserDetail(user) {
-      router.push({ name: 'UserDetail', params: { userId: user.id }, query: { user } });
-    },
+
     deleteUser(id) {
       UserService.delete(id)
         .then(() => this.showUsers())

@@ -1,0 +1,9 @@
+$color-blue: rgb(56, 139, 223 );
+
+$screen-md-min: 800px;
+
+@mixin breakpoint {
+  @media (min-width: #{$screen-md-min}) {
+    @content;
+  }
+}

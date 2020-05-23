@@ -1,23 +1,27 @@
-<div>
-  <h1>USER LIST</h1>
-  <Modal @update-users="showUsers"/>
-  <ul>
-    <li v-for="user of users" :key="user.id"> {{user.firstName}} {{user.lastName}}
-    <v-btn
-      @click="showUserDetail(user)"
-    >
-      Ver
-    </v-btn>
-     <v-btn
-      @click="deleteUser(user.id)"
-    >
-      Delete
-    </v-btn>
+<div class="user-list">
+  <h1>Users</h1>
 
-    <v-btn
-    >
-    <Modal @update-users="showUsers" :user="user" />
-    </v-btn>
-    </li>
-  </ul>
+  <modal @update-users="showUsers"/>
+  
+  <div class="user">
+    <v-expansion-panels focusable popout>
+      <v-expansion-panel
+        v-for="user of users"
+        :key="user.id"
+      >
+      <v-expansion-panel-header>{{user.firstName}} {{user.lastName}}
+        <template v-slot:actions>
+          <modal @click.native.stop="editUser(user)" @update-users="showUsers" :user="user" />
+          
+          <v-btn color="warning" fab small dark
+            @click.native.stop="deleteUser(user.id)">
+            <v-icon>mdi-delete</v-icon>
+          </v-btn>
+        </template>
+      </v-expansion-panel-header>
+  
+      <user-detail :user="user"></user-detail>
+      </v-expansion-panel>
+    </v-expansion-panels>
+  </div>
 </div>
