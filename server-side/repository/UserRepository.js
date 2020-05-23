@@ -4,8 +4,8 @@ class UserRepository {
     this.users = [
       {
         "id": 1,
-        "firstname": "John",
-        "lastname": "Smith",
+        "firstName": "John",
+        "lastName": "Smith",
         "email": "john.smith@example.com",
         "birthDate": "1980-01-23",
         "address": {
@@ -13,13 +13,13 @@ class UserRepository {
           "street": "Lindenstraße 89",
           "city": "Freiburg im Breisgau",
           "country": "DE",
-          "postalcode": "42030"
+          "postalCode": "42030"
         }
       },
       {
         "id": 2,
-        "firstname": "Raquel",
-        "lastname": "Serrano",
+        "firstName": "Raquel",
+        "lastName": "Serrano",
         "email": "raquelsr@example.com",
         "birthDate": "1777-12-01",
         "address": {
@@ -27,13 +27,13 @@ class UserRepository {
           "street": "Calle Falsa, 123",
           "city": "Malaga",
           "country": "ES",
-          "postalcode": "77130"
+          "postalCode": "77130"
         }
       },
       {
         "id": 3,
-        "firstname": "Jorge",
-        "lastname": "Sanchez",
+        "firstName": "Jorge",
+        "lastName": "Sanchez",
         "email": "jorgesan@example.com",
         "birthDate": "1990-02-22",
         "address": {
@@ -41,7 +41,7 @@ class UserRepository {
           "street": "Gran Via, 42",
           "city": "Madrid",
           "country": "ES",
-          "postalcode": "22732"
+          "postalCode": "22732"
         }
       }
     ];

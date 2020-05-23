@@ -8,6 +8,7 @@
       @input="$v.street.$touch()"
       @blur="$v.street.$touch()"
     ></v-text-field>
+
     <v-text-field
     v-model="city"
     :error-messages="cityErrors"
@@ -15,7 +16,8 @@
     required
     @input="$v.city.$touch()"
     @blur="$v.city.$touch()"
-  ></v-text-field>
+    ></v-text-field>
+
     <v-text-field
     v-model="country"
     :error-messages="countryErrors"
@@ -23,7 +25,8 @@
     required
     @input="$v.country.$touch()"
     @blur="$v.country.$touch()"
-  ></v-text-field>
+    ></v-text-field>
+
     <v-text-field
     v-model="postalCode"
     :error-messages="postalCodeErrors"
@@ -31,7 +34,7 @@
     required
     @input="$v.postalCode.$touch()"
     @blur="$v.postalCode.$touch()"
-  ></v-text-field>
+    ></v-text-field>
   </form>
 </template>
 
@@ -39,7 +42,7 @@
 import { validationMixin } from 'vuelidate';
 import { required } from 'vuelidate/lib/validators';
 import Address from '../models/Address';
-/* eslint-disable no-unused-expressions */
+import ErrorValidatorHandler from '../utils/ErrorValidatorHandler';
 
 export default {
   mixins: [validationMixin],
@@ -60,38 +63,28 @@ export default {
 
   computed: {
     streetErrors() {
-      const errors = [];
-      if (!this.$v.street.$dirty) return errors;
-      !this.$v.street.required && errors.push('Street is required.');
-      return errors;
+      const errorHandler = new ErrorValidatorHandler();
+      return errorHandler.checkRequiredField(this.$v.street, 'Street');
     },
     cityErrors() {
-      const errors = [];
-      if (!this.$v.city.$dirty) return errors;
-      !this.$v.city.required && errors.push('City is required.');
-      return errors;
+      const errorHandler = new ErrorValidatorHandler();
+      return errorHandler.checkRequiredField(this.$v.city, 'City');
     },
     countryErrors() {
-      const errors = [];
-      if (!this.$v.country.$dirty) return errors;
-      !this.$v.country.required && errors.push('Country is required.');
-      return errors;
+      const errorHandler = new ErrorValidatorHandler();
+      return errorHandler.checkRequiredField(this.$v.country, 'Country');
     },
     postalCodeErrors() {
-      const errors = [];
-      if (!this.$v.postalCode.$dirty) return errors;
-      !this.$v.postalCode.required && errors.push('Postal Code is required.');
-      return errors;
+      const errorHandler = new ErrorValidatorHandler();
+      return errorHandler.checkRequiredField(this.$v.postalCode, 'Postal Code');
     },
   },
+
   methods: {
     submit() {
       this.$v.$touch();
-    },
-    createAddress() {
       const address = new Address(this.street, this.city, this.country, this.postalCode);
       address.id = 1;
-      console.log(address);
       return address;
     },
     clear() {

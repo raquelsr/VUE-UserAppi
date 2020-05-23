@@ -3,7 +3,7 @@
     <h1>USER LIST</h1>
     <Modal @update-users="showUsers" />
     <ul>
-      <li v-for="user of users" :key="user.id"> {{user.firstname}}
+      <li v-for="user of users" :key="user.id"> {{user.firstName}}
       <v-btn
         @click="showUserDetail(user)"
       >
@@ -26,21 +26,25 @@ import Modal from './modal/Modal.vue';
 
 export default {
   name: 'UserList',
+
   components: {
     Modal,
   },
+
   data: () => ({
     users: [],
-    showModal: false,
   }),
+
   created() {
     this.showUsers();
   },
+
   watch: {
     users() {
       console.log('users update');
     },
   },
+
   methods: {
     showUsers() {
       UserService.getAll()
