@@ -7,6 +7,7 @@ import {
   VExpansionPanelContent,
   VBtn,
   VIcon,
+  VDatePicker,
 } from 'vuetify';
 
 Vue.use(Vuetify, {
@@ -17,6 +18,7 @@ Vue.use(Vuetify, {
     VExpansionPanelContent,
     VBtn,
     VIcon,
+    VDatePicker,
   },
 
 });

@@ -36,11 +36,13 @@ export default {
     }
   },
 
-  data: () => ({
+  data: (vm) => ({
     firstName: '',
     lastName: '',
     email: '',
     birthDate: '',
+    dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
+    menuDatePicker: false,
   }),
 
   computed: {
@@ -64,6 +66,12 @@ export default {
     },
   },
 
+  watch: {
+    birthDate() {
+      this.dateFormatted = this.formatDate(this.birthDate);
+    },
+  },
+
   methods: {
     createUser() {
       const address = this.$refs.addressForm.submit();
@@ -75,6 +83,20 @@ export default {
         .setAddress(address);
       return user;
     },
+
+    formatDate(date) {
+      if (!date) return null;
+      const [year, month, day] = date.split('-');
+      return `${month}/${day}/${year}`;
+    },
+
+    parseDate(date) {
+      if (!date) return null;
+
+      const [month, day, year] = date.split('/');
+      return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+    },
+
     save() {
       this.$v.$touch();
       const user = this.createUser();
@@ -85,6 +107,7 @@ export default {
         UserService.create(user).then(() => this.$emit('modal-user-success'));
       }
     },
+
     cancel() {
       this.$emit('close-modal');
     },

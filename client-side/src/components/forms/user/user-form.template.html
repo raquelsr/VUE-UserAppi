@@ -28,14 +28,30 @@
     @blur="$v.email.$touch()"
   ></v-text-field>
 
-  <v-text-field
-    v-model="birthDate"
-    :error-messages="birthDateErrors"
-    label="Birth date"
-    required
-    @input="$v.birthDate.$touch()"
-    @blur="$v.birthDate.$touch()"
-  ></v-text-field>
+  <v-menu
+    ref="menuDatePicker"
+    v-model="menuDatePicker"
+    :close-on-content-click="true"
+    transition="scale-transition"
+    offset-y
+    max-width="290px"
+    min-width="290px"
+  >
+    <template v-slot:activator="{ on }">
+      <v-text-field
+        v-model="birthDate"
+        label="Birth date"
+        hint="YYYY/MM/DD format"
+        persistent-hint
+        :error-messages="birthDateErrors"
+        required
+        v-on="on"
+        @input="$v.birthDate.$touch()"
+        @blur="$v.birthDate.$touch()"
+      ></v-text-field>
+    </template>
+    <v-date-picker v-model="birthDate" no-title @input="menuDatePicker = false"></v-date-picker>
+  </v-menu>
 
   <address-form ref="addressForm" :user="user" />
 
