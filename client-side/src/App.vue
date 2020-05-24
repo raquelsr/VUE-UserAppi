@@ -2,13 +2,12 @@
   <v-app>
     <v-app-bar
       app
-      color="primary"
       dark
     >
       <NavBar />
     </v-app-bar>
 
-     <v-content>
+    <v-content>
       <router-view/>
     </v-content>
   </v-app>
@@ -25,9 +24,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
- .v-app-bar {
-   z-index: 1 !important;
- }
-</style>

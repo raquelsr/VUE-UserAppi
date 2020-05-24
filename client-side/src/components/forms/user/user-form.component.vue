@@ -6,8 +6,8 @@ import { validationMixin } from 'vuelidate';
 import { required, email } from 'vuelidate/lib/validators';
 import AddressForm from '../address/address-form.component.vue';
 import UserBuilder from '../../../models/builders/UserBuilder';
-import UserService from '../../../services/UserService';
-import ErrorValidatorHandler from '../../../utils/ErrorValidatorHandler';
+import UserService from '../../../services/user.service';
+import ErrorValidatorHandler from '../../../utils/error-validator-handler';
 
 export default {
   props: {

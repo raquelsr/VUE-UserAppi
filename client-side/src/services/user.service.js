@@ -1,4 +1,4 @@
-import http from '../http-common';
+import http from '../utils/http-common';
 
 class UserService {
   constructor() {
@@ -18,7 +18,6 @@ class UserService {
   }
 
   edit(user) {
-    console.log(user);
     return http.put(`${this.ENDPOINT}/${user.id}`, user);
   }
 

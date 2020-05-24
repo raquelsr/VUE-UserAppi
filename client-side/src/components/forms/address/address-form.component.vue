@@ -5,7 +5,7 @@ import { validationMixin } from 'vuelidate';
 import {
   required, maxLength, minLength, numeric,
 } from 'vuelidate/lib/validators';
-import ErrorValidatorHandler from '../../../utils/ErrorValidatorHandler';
+import ErrorValidatorHandler from '../../../utils/error-validator-handler';
 import AddressBuilder from '../../../models/builders/AddressBuilder';
 
 export default {

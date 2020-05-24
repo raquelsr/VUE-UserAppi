@@ -1,32 +1,31 @@
 import Vue from 'vue';
 import Vuetify from 'vuetify/lib';
 import {
+  VBtn,
+  VCard,
+  VDatePicker,
+  VDialog,
   VExpansionPanels,
   VExpansionPanel,
   VExpansionPanelHeader,
   VExpansionPanelContent,
-  VBtn,
   VIcon,
-  VDatePicker,
-  VDialog,
-  VCard,
   VSpacer,
 } from 'vuetify';
 
 Vue.use(Vuetify, {
   components: {
-    VExpansionPanel,
-    VExpansionPanels,
-    VExpansionPanelHeader,
-    VExpansionPanelContent,
     VBtn,
-    VIcon,
+    VCard,
     VDatePicker,
     VDialog,
-    VCard,
+    VExpansionPanels,
+    VExpansionPanel,
+    VExpansionPanelHeader,
+    VExpansionPanelContent,
+    VIcon,
     VSpacer,
   },
-
 });
 
 export default new Vuetify({

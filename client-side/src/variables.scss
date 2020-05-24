@@ -1,16 +1,3 @@
-$color-blue: rgb(56, 139, 223 );
-$color-black: #000;
-$color-white: #FFF;
-$screen-md-min: 800px;
-
-@mixin breakpoint-large {
-  @media (min-width: #{$screen-md-min}) {
-    @content;
-  }
-}
-
-@mixin breakpoint-small {
-  @media (max-width: #{$screen-md-min}) {
-    @content;
-  }
-}
+$color-blue: rgb(51, 97, 164);
+$color-black: rgb(0, 0, 0);
+$color-white: rgb(255, 255, 255);

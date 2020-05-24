@@ -2,7 +2,7 @@
 <style scoped lang="scss" src="./user-list.style.scss"></style>
 
 <script>
-import UserService from '../../../services/UserService';
+import UserService from '../../../services/user.service';
 import Modal from '../../modal/modal.component.vue';
 import UserDetail from '../user-detail/user-detail.component.vue';
 
