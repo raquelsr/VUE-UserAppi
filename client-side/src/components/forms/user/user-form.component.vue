@@ -98,11 +98,7 @@ export default {
     save() {
       this.$v.$touch();
       const user = this.createUser();
-      if (this.user) {
-        this.edit(user);
-      } else {
-        this.create(user);
-      }
+      return (this.user) ? this.edit(user) : this.create(user);
     },
     edit(user) {
       const userEdit = user;
