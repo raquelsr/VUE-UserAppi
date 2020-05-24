@@ -25,6 +25,10 @@ export default {
     },
     close() {
       this.isOpen = false;
+      if (!this.user) this.$refs.userForm.clear();
+    },
+    save() {
+      this.$refs.userForm.save();
     },
     updateUserList() {
       this.close();

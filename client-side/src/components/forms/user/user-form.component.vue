@@ -102,14 +102,25 @@ export default {
       const user = this.createUser();
       if (this.user) {
         user.id = this.user.id;
-        UserService.edit(user).then(() => this.$emit('modal-user-success'));
+        UserService.edit(user).then(() => {
+          this.clear();
+          this.$emit('modal-user-success');
+        });
       } else {
-        UserService.create(user).then(() => this.$emit('modal-user-success'));
+        UserService.create(user).then(() => {
+          this.clear();
+          this.$emit('modal-user-success');
+        });
       }
     },
 
-    cancel() {
-      this.$emit('close-modal');
+    clear() {
+      this.$v.$reset();
+      this.firstName = '';
+      this.lastName = '';
+      this.email = '';
+      this.birthDate = '';
+      this.$refs.addressForm.clear();
     },
   },
 };

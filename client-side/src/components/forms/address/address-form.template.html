@@ -9,6 +9,15 @@
   ></v-text-field>
 
   <v-text-field
+  v-model="postalCode"
+  :error-messages="postalCodeErrors"
+  label="Postal Code"
+  required
+  @input="$v.postalCode.$touch()"
+  @blur="$v.postalCode.$touch()"
+  ></v-text-field>
+
+  <v-text-field
   v-model="city"
   :error-messages="cityErrors"
   label="City"
@@ -26,12 +35,4 @@
   @blur="$v.country.$touch()"
   ></v-text-field>
 
-  <v-text-field
-  v-model="postalCode"
-  :error-messages="postalCodeErrors"
-  label="Postal Code"
-  required
-  @input="$v.postalCode.$touch()"
-  @blur="$v.postalCode.$touch()"
-  ></v-text-field>
 </form>

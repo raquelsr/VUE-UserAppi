@@ -76,6 +76,13 @@ export default {
       const address = this.createAddress();
       return address;
     },
+    clear() {
+      this.$v.$reset();
+      this.street = '';
+      this.city = '';
+      this.country = '';
+      this.postalCode = '';
+    },
   },
 };
 </script>

@@ -8,6 +8,9 @@ import {
   VBtn,
   VIcon,
   VDatePicker,
+  VDialog,
+  VCard,
+  VSpacer,
 } from 'vuetify';
 
 Vue.use(Vuetify, {
@@ -19,6 +22,9 @@ Vue.use(Vuetify, {
     VBtn,
     VIcon,
     VDatePicker,
+    VDialog,
+    VCard,
+    VSpacer,
   },
 
 });
