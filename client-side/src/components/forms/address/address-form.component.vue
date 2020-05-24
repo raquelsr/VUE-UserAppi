@@ -2,7 +2,9 @@
 
 <script>
 import { validationMixin } from 'vuelidate';
-import { required } from 'vuelidate/lib/validators';
+import {
+  required, maxLength, minLength, numeric,
+} from 'vuelidate/lib/validators';
 import ErrorValidatorHandler from '../../../utils/ErrorValidatorHandler';
 import AddressBuilder from '../../../models/builders/AddressBuilder';
 
@@ -16,8 +18,8 @@ export default {
   validations: {
     street: { required },
     city: { required },
-    country: { required },
-    postalCode: { required },
+    country: { required, maxLength: maxLength(2), minLength: minLength(2) },
+    postalCode: { required, numeric },
   },
 
   data: () => ({
@@ -47,11 +49,16 @@ export default {
     },
     countryErrors() {
       const errorHandler = new ErrorValidatorHandler();
-      return errorHandler.checkRequiredField(this.$v.country, 'Country');
+      errorHandler.checkRequiredField(this.$v.country, 'Country');
+      errorHandler.checkMaxLength(this.$v.country);
+      errorHandler.checkMinLength(this.$v.country);
+      return errorHandler.multipleValidations();
     },
     postalCodeErrors() {
       const errorHandler = new ErrorValidatorHandler();
-      return errorHandler.checkRequiredField(this.$v.postalCode, 'Postal Code');
+      errorHandler.checkRequiredField(this.$v.postalCode, 'Postal Code');
+      errorHandler.checkIsNumber(this.$v.postalCode);
+      return errorHandler.multipleValidations();
     },
   },
 

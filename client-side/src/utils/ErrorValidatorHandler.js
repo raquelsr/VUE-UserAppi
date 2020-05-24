@@ -19,6 +19,30 @@ class ErrorValidatorHandler {
     return this.errorList;
   }
 
+  checkMaxLength(field) {
+    if (!field.$dirty) return this.errorList;
+    if (!field.maxLength) {
+      this.errorList.push('Example: UK, ES, DE');
+    }
+    return this.errorList;
+  }
+
+  checkMinLength(field) {
+    if (!field.$dirty) return this.errorList;
+    if (!field.minLength) {
+      this.errorList.push('Example: UK, ES, DE');
+    }
+    return this.errorList;
+  }
+
+  checkIsNumber(field) {
+    if (!field.$dirty) return this.errorList;
+    if (!field.numeric) {
+      this.errorList.push('Must be numbers');
+    }
+    return this.errorList;
+  }
+
   multipleValidations() {
     return this.errorList;
   }
