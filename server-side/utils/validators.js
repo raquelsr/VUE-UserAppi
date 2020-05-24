@@ -9,7 +9,7 @@ exports.validateUser = () => {
     body('address', 'address not found').exists(),
     body('address.street', 'street not found').exists(),
     body('address.city', 'city not found').exists(),
-    body('address.country', 'country not found').exists(),
+    body('address.country', 'country not found').exists().isLength({min: 2, max: 2}),
     body('address.postalCode', 'postalcode not found').exists().isInt()
   ]
 }

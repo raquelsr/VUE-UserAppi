@@ -103,7 +103,6 @@ export default {
       if (this.user) {
         user.id = this.user.id;
         UserService.edit(user).then(() => {
-          this.clear();
           this.$emit('modal-user-success');
         });
       } else {
