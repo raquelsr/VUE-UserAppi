@@ -9,6 +9,8 @@ import ErrorValidatorHandler from '../../../utils/error-validator-handler';
 import Address from '../../../models/address';
 
 export default {
+  name: 'AddressForm',
+
   props: {
     user: Object,
   },
@@ -71,7 +73,7 @@ export default {
         .setPostalCode(this.postalCode);
       return address;
     },
-    submit() {
+    save() {
       this.$v.$touch();
       const address = this.createAddress();
       return address;

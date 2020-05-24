@@ -10,6 +10,8 @@ import UserService from '../../../services/user.service';
 import ErrorValidatorHandler from '../../../utils/error-validator-handler';
 
 export default {
+  name: 'UserForm',
+
   props: {
     user: Object,
   },
@@ -27,15 +29,6 @@ export default {
     AddressForm,
   },
 
-  mounted() {
-    if (this.user) {
-      this.firstName = this.user.firstName;
-      this.lastName = this.user.lastName;
-      this.email = this.user.email;
-      this.birthDate = this.user.birthDate;
-    }
-  },
-
   data: (vm) => ({
     firstName: '',
     lastName: '',
@@ -44,6 +37,15 @@ export default {
     dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
     menuDatePicker: false,
   }),
+
+  mounted() {
+    if (this.user) {
+      this.firstName = this.user.firstName;
+      this.lastName = this.user.lastName;
+      this.email = this.user.email;
+      this.birthDate = this.user.birthDate;
+    }
+  },
 
   computed: {
     firstNameErrors() {
@@ -74,7 +76,7 @@ export default {
 
   methods: {
     createUser() {
-      const address = this.$refs.addressForm.submit();
+      const address = this.$refs.addressForm.save();
       const user = new User()
         .setFirstName(this.firstName)
         .setLastName(this.lastName)
@@ -92,7 +94,6 @@ export default {
 
     parseDate(date) {
       if (!date) return null;
-
       const [month, day, year] = date.split('/');
       return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
     },

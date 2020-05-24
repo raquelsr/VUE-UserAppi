@@ -4,7 +4,7 @@
       app
       dark
     >
-      <NavBar />
+      <nav-bar></nav-bar>
     </v-app-bar>
 
     <v-content>
