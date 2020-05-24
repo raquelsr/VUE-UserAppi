@@ -1,0 +1,15 @@
+@import '../../variables.scss';
+
+#modal-button {
+  background-color: $color-blue;
+  color: $color-white;
+  
+  &.edit {
+    margin-top: 0;
+    margin-right: 10px;
+  }
+
+  .v-icon {
+    color: $color-white;
+  }
+}

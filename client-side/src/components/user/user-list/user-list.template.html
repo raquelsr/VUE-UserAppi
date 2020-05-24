@@ -1,0 +1,56 @@
+<div class="user-list">
+  <h1>Users</h1>
+
+  <modal-form class="modal-create" 
+    @update-users="showUsers" />
+  
+  <v-alert
+    dense
+    outlined
+    type="error"
+    v-if="error"
+    id="alert-error"
+    >
+      Opps! An error occurred while processing your request.
+  </v-alert>
+
+  <div class="user">
+    <v-expansion-panels 
+      focusable 
+      popout>
+      <v-expansion-panel
+        v-for="user of users"
+        :key="user.id"
+      >
+      <v-expansion-panel-header disable-icon-rotate>{{user.firstName}} {{user.lastName}}
+        <template v-slot:actions>
+          <div class="actions">
+            <v-btn class="button-view" id="button-fab"
+              fab 
+              small 
+              dark
+            >
+              <v-icon>mdi-eye</v-icon>
+            </v-btn>
+
+            <modal-form 
+              @click.native.stop 
+              @update-users="showUsers" 
+              :user="user" />
+          
+            <v-btn id="button-fab" 
+              fab 
+              small 
+              dark
+              @click.native.stop="deleteUser(user.id)">
+              <v-icon>mdi-delete</v-icon>
+            </v-btn>
+          </div>
+        </template>
+      </v-expansion-panel-header>
+  
+      <user-detail :user="user" />
+      </v-expansion-panel>
+    </v-expansion-panels>
+  </div>
+</div>

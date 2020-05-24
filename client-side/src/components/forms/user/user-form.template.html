@@ -1,0 +1,63 @@
+<form>
+  <v-alert
+  dense
+  outlined
+  type="error"
+  v-if="error"
+  >
+    Opps! An error occurred while processing your request.
+  </v-alert>
+  <v-text-field
+    v-model="firstName"
+    :error-messages="firstNameErrors"
+    label="First name"
+    required
+    @input="$v.firstName.$touch()"
+    @blur="$v.firstName.$touch()"
+  ></v-text-field>
+
+  <v-text-field
+    v-model="lastName"
+    :error-messages="lastNameErrors"
+    label="Last name"
+    required
+    @input="$v.lastName.$touch()"
+    @blur="$v.lastName.$touch()"
+  ></v-text-field>
+
+  <v-text-field
+    v-model="email"
+    :error-messages="emailErrors"
+    label="Email"
+    required
+    @input="$v.email.$touch()"
+    @blur="$v.email.$touch()"
+  ></v-text-field>
+
+  <v-menu
+    ref="menuDatePicker"
+    v-model="menuDatePicker"
+    :close-on-content-click="true"
+    transition="scale-transition"
+    offset-y
+    max-width="290px"
+    min-width="290px"
+  >
+    <template v-slot:activator="{ on }">
+      <v-text-field
+        v-model="birthDate"
+        label="Birth date"
+        hint="YYYY-MM-DD format"
+        persistent-hint
+        :error-messages="birthDateErrors"
+        required
+        v-on="on"
+        @input="$v.birthDate.$touch()"
+        @blur="$v.birthDate.$touch()"
+      ></v-text-field>
+    </template>
+    <v-date-picker v-model="birthDate" no-title @input="menuDatePicker = false"></v-date-picker>
+  </v-menu>
+
+  <address-form ref="addressForm" :user="user" />
+</form>

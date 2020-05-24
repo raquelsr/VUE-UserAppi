@@ -1,0 +1,22 @@
+<div>
+  <v-expansion-panel-content>
+    <div class="user">
+      <div>
+        <span class="field">Email:</span> {{user.email}}
+      </div>
+      <div> 
+        <span class="field">Birth date:</span> {{user.birthDate}}
+      </div>
+      
+      <div>
+        <span class="field">Address:</span> {{user.address.street}} - {{user.address.city}}
+      </div>
+      <div>
+        <span class="field">Country:</span> {{user.address.country}} 
+      </div>
+      <div>
+        <span class="field">Postal Code:</span> {{user.address.postalCode}} 
+      </div>
+    </div>
+  </v-expansion-panel-content>
+</div>

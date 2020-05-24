@@ -1,0 +1,33 @@
+<div>
+  <v-dialog v-model="isOpen" persistent max-width="600px">
+    <template v-slot:activator="{ on }">
+      <div v-if="user">
+        <v-btn id="modal-button" class="edit" @click="open" v-on="on" fab small dark
+        >
+          <v-icon>mdi-account-edit</v-icon>
+        </v-btn>
+      </div >
+      <div v-else>
+        <v-btn id="modal-button" @click="open" v-on="on">New User</v-btn>
+      </div>
+    </template>
+    <v-card>
+      <v-card-title>
+        <span class="headline">
+          <span v-if="user">Edit {{user.firstName}}</span>
+          <span v-else>Create new user</span>
+        </span>
+      </v-card-title>
+      <v-card-text>
+        <v-container>
+          <UserForm ref="userForm" @modal-user-success="updateUserList" :user="user"/>
+        </v-container>
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn color="blue darken-1" text @click="close">Close</v-btn>
+        <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+</div>
