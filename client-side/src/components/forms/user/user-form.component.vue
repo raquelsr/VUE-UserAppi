@@ -85,47 +85,50 @@ export default {
         .setAddress(address);
       return user;
     },
-
     formatDate(date) {
       if (!date) return null;
       const [year, month, day] = date.split('-');
       return `${month}/${day}/${year}`;
     },
-
     parseDate(date) {
       if (!date) return null;
       const [month, day, year] = date.split('/');
       return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
     },
-
     save() {
       this.$v.$touch();
       const user = this.createUser();
       if (this.user) {
-        user.id = this.user.id;
-        UserService.edit(user)
-          .then(() => {
-            this.error = false;
-            this.$emit('modal-user-success');
-          })
-          .catch((error) => {
-            this.error = true;
-            console.log(error);
-          });
+        this.edit(user);
       } else {
-        UserService.create(user)
-          .then(() => {
-            this.error = true;
-            this.$emit('modal-user-success');
-            this.clear();
-          })
-          .catch((error) => {
-            this.error = true;
-            console.log(error);
-          });
+        this.create(user);
       }
     },
-
+    edit(user) {
+      const userEdit = user;
+      userEdit.id = this.user.id;
+      UserService.edit(userEdit)
+        .then(() => {
+          this.error = false;
+          this.$emit('modal-user-success');
+        })
+        .catch((error) => {
+          this.error = true;
+          console.log(error);
+        });
+    },
+    create(user) {
+      UserService.create(user)
+        .then(() => {
+          this.error = true;
+          this.$emit('modal-user-success');
+          this.clear();
+        })
+        .catch((error) => {
+          this.error = true;
+          console.log(error);
+        });
+    },
     clear() {
       this.$v.$reset();
       this.firstName = '';
