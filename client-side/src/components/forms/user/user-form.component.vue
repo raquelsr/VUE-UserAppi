@@ -5,7 +5,7 @@
 import { validationMixin } from 'vuelidate';
 import { required, email } from 'vuelidate/lib/validators';
 import AddressForm from '../address/address-form.component.vue';
-import UserBuilder from '../../../models/builders/UserBuilder';
+import User from '../../../models/user';
 import UserService from '../../../services/user.service';
 import ErrorValidatorHandler from '../../../utils/error-validator-handler';
 
@@ -75,7 +75,7 @@ export default {
   methods: {
     createUser() {
       const address = this.$refs.addressForm.submit();
-      const user = new UserBuilder()
+      const user = new User()
         .setFirstName(this.firstName)
         .setLastName(this.lastName)
         .setEmail(this.email)

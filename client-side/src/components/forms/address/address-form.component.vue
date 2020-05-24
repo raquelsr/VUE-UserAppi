@@ -6,7 +6,7 @@ import {
   required, maxLength, minLength, numeric,
 } from 'vuelidate/lib/validators';
 import ErrorValidatorHandler from '../../../utils/error-validator-handler';
-import AddressBuilder from '../../../models/builders/AddressBuilder';
+import Address from '../../../models/address';
 
 export default {
   props: {
@@ -64,7 +64,7 @@ export default {
 
   methods: {
     createAddress() {
-      const address = new AddressBuilder()
+      const address = new Address()
         .setStreet(this.street)
         .setCity(this.city)
         .setCountry(this.country)

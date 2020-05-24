@@ -1,4 +1,4 @@
-class AddressBuilder {
+class Address {
   setStreet(street) {
     this.street = street;
     return this;
@@ -20,4 +20,4 @@ class AddressBuilder {
   }
 }
 
-export default AddressBuilder;
+export default Address;

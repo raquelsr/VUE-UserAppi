@@ -1,4 +1,4 @@
-class UserBuilder {
+class User {
   setFirstName(firstName) {
     this.firstName = firstName;
     return this;
@@ -25,4 +25,4 @@ class UserBuilder {
   }
 }
 
-export default UserBuilder;
+export default User;
