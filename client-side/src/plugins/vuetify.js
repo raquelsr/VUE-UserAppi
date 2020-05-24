@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuetify from 'vuetify/lib';
 import {
+  VAlert,
   VBtn,
   VCard,
   VDatePicker,
@@ -15,6 +16,7 @@ import {
 
 Vue.use(Vuetify, {
   components: {
+    VAlert,
     VBtn,
     VCard,
     VDatePicker,

@@ -35,6 +35,7 @@ export default {
     birthDate: '',
     dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
     menuDatePicker: false,
+    error: false,
   }),
 
   mounted() {
@@ -102,14 +103,26 @@ export default {
       const user = this.createUser();
       if (this.user) {
         user.id = this.user.id;
-        UserService.edit(user).then(() => {
-          this.$emit('modal-user-success');
-        });
+        UserService.edit(user)
+          .then(() => {
+            this.error = false;
+            this.$emit('modal-user-success');
+          })
+          .catch((error) => {
+            this.error = true;
+            console.log(error);
+          });
       } else {
-        UserService.create(user).then(() => {
-          this.clear();
-          this.$emit('modal-user-success');
-        });
+        UserService.create(user)
+          .then(() => {
+            this.error = true;
+            this.$emit('modal-user-success');
+            this.clear();
+          })
+          .catch((error) => {
+            this.error = true;
+            console.log(error);
+          });
       }
     },
 
@@ -120,6 +133,7 @@ export default {
       this.email = '';
       this.birthDate = '';
       this.$refs.addressForm.clear();
+      this.error = false;
     },
   },
 };

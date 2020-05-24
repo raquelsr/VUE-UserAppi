@@ -16,6 +16,7 @@ export default {
 
   data: () => ({
     users: [],
+    error: false,
   }),
 
   created() {
@@ -25,13 +26,25 @@ export default {
   methods: {
     showUsers() {
       UserService.getAll()
-        .then((response) => { this.users = response.data; })
-        .catch((error) => console.log(error));
+        .then((response) => {
+          this.error = false;
+          this.users = response.data;
+        })
+        .catch((error) => {
+          this.error = true;
+          console.log(error);
+        });
     },
     deleteUser(id) {
       UserService.delete(id)
-        .then(() => this.showUsers())
-        .catch((error) => console.log(error));
+        .then(() => {
+          this.error = false;
+          this.showUsers();
+        })
+        .catch((error) => {
+          this.error = true;
+          console.log(error);
+        });
     },
   },
 };

@@ -1,4 +1,12 @@
 <form>
+  <v-alert
+  dense
+  outlined
+  type="error"
+  v-if="error"
+  >
+    Opps! An error occurred while processing your request.
+  </v-alert>
   <v-text-field
     v-model="firstName"
     :error-messages="firstNameErrors"
