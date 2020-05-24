@@ -1,5 +1,4 @@
 <template src="./user-form.template.html"></template>
-<style scoped lang="scss" src="./user-form.style.scss"></style>
 
 <script>
 import { validationMixin } from 'vuelidate';
