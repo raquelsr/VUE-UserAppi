@@ -1,13 +1,7 @@
 .user {
   margin-top: 10px;
 
-  &-name {
-    font-size: 1.1em;
-    font-weight: 600;
-  }
-
-  .data-inline {
-    display: flex;
-    justify-content: space-between;
+  .field {
+    font-weight: 500;
   }
 }

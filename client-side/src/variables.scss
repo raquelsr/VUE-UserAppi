@@ -1,5 +1,6 @@
 $color-blue: rgb(56, 139, 223 );
-
+$color-black: #000;
+$color-white: #FFF;
 $screen-md-min: 800px;
 
 @mixin breakpoint-large {

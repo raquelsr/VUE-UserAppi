@@ -1,7 +1,7 @@
 @import '../../../variables.scss';
 
 .user-list {
-  color: $color-blue;
+  color: $color-black;
 
   h1 {
     text-align: center;
@@ -19,8 +19,19 @@
     margin: 4%;
   }
 
+  .v-expansion-panel-header--active {
+    font-weight: 600;
+    font-size: 1.2em;
+  }
+
   .actions {
     display: flex;
+    #button-fab {
+      background-color: $color-blue;
+      .v-icon {
+        color: $color-white;
+      }
+    }
   }
 
   .button-view {
