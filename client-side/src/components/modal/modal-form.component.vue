@@ -1,10 +1,12 @@
-<template src="./modal.template.html"></template>
-<style scoped lang="scss" src="./modal.style.scss"></style>
+<template src="./modal-form.template.html"></template>
+<style scoped lang="scss" src="./modal-form.style.scss"></style>
 
 <script>
 import UserForm from '../forms/user/user-form.component.vue';
 
 export default {
+  name: 'ModalForm',
+
   props: {
     user: Object,
   },

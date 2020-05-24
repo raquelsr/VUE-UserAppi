@@ -3,14 +3,14 @@
 
 <script>
 import UserService from '../../../services/user.service';
-import Modal from '../../modal/modal.component.vue';
+import ModalForm from '../../modal/modal-form.component.vue';
 import UserDetail from '../user-detail/user-detail.component.vue';
 
 export default {
   name: 'UserList',
 
   components: {
-    Modal,
+    ModalForm,
     UserDetail,
   },
 
@@ -28,7 +28,6 @@ export default {
         .then((response) => { this.users = response.data; })
         .catch((error) => console.log(error));
     },
-
     deleteUser(id) {
       UserService.delete(id)
         .then(() => this.showUsers())

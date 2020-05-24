@@ -4,6 +4,8 @@
 <script>
 
 export default {
+  name: 'UserDetail',
+
   props: {
     user: Object,
   },
